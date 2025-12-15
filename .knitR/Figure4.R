@@ -1,4 +1,4 @@
-## ----setup, include=FALSE---------------------------------------------------------------------------------
+## ----setup, include=FALSE---------------------------------------------------------------------------------------------------------------------
 # Show code if file is knit 
 knitr::opts_chunk$set(echo = TRUE)
 
@@ -10,14 +10,14 @@ if (interactive() && rstudioapi::isAvailable()) {
 }
 
 
-## ---------------------------------------------------------------------------------------------------------
+## ---------------------------------------------------------------------------------------------------------------------------------------------
 # Load libraries and data 
 source("plotting_setup.R")
 # Load functions
 source("plotting_functions.R")
 
 
-## ---------------------------------------------------------------------------------------------------------
+## ---------------------------------------------------------------------------------------------------------------------------------------------
 # Full set of features for the supplementary figure
 select_feats_full = c('Cit','Bio','K','Creatinine','Lys','LSTb','PA','B1','B2',
                  'HipAcid','C5','AABA','PC.ae.C34.0','LNnT','Se','FLNH',
@@ -118,15 +118,10 @@ Vital_corr_nutrients_unsupp = left_join(corr_to_heatmap_df(V_corr_nutrients_1_un
 Vital_corr_nutr_unsupp_pval = left_join(corr_to_heatmap_df(V_corr_nutrients_1_unsupp$P, "growth_vel_3mo", "40D"),
                                  corr_to_heatmap_df(V_corr_nutrients_2_unsupp$P, "growth_vel_3mo", "56D")) %>% convert_nutrients_heatmap(nutrient_heatmap_key) 
 
-# Calculating and extracting associations for CHILD
-C_corr_nutrients_1_unsupp = Child_everything %>%
-  filter(Timepoint==1) %>%
-  dplyr::select(growth_vel_3mo, select_feats_full) %>% as.matrix() %>% rcorr(type = "spearman")
+Misame_corr_nutrients_unsupp_select = Misame_corr_nutrients_unsupp[unlist(nutrient_heatmap_key[select_feats]),]
+Misame_corr_nutr_unsupp_pval_select = Misame_corr_nutr_unsupp_pval[unlist(nutrient_heatmap_key[select_feats]),]
 
-Child_corr_nutrients_unsupp = corr_to_heatmap_df(C_corr_nutrients_1_unsupp$r, "growth_vel_3mo", "3M") %>% convert_nutrients_heatmap(nutrient_heatmap_key) 
-Child_corr_nutr_unsupp_pval = corr_to_heatmap_df(C_corr_nutrients_1_unsupp$P, "growth_vel_3mo", "3M") %>% convert_nutrients_heatmap(nutrient_heatmap_key) 
-
-M_heatmap_unsupp = Misame_corr_nutrients_unsupp[unlist(nutrient_heatmap_key[select_feats]),] %>%
+M_heatmap_unsupp = Misame_corr_nutrients_unsupp_select %>%
   Heatmap(
     cluster_rows = FALSE, cluster_columns = FALSE, column_names_centered = TRUE, 
     col = colorRamp2(seq(-0.5, 0.5, length.out = 101), colorRampPalette(c("purple", "white", "forestgreen"))(101)),
@@ -134,16 +129,20 @@ M_heatmap_unsupp = Misame_corr_nutrients_unsupp[unlist(nutrient_heatmap_key[sele
     column_title = "MISAME", column_names_rot = 0,
     show_column_names = TRUE, show_row_names = FALSE, 
     cell_fun = function(j, i, x, y, width, height, fill) {
-      pval = Misame_corr_nutr_unsupp_pval[i, j] 
+      pval = Misame_corr_nutr_unsupp_pval_select[i, j] 
       if (pval < 0.05) {
-        text_label <- round(Misame_corr_nutrients_unsupp[i, j], 2)
+        text_label <- round(Misame_corr_nutrients_unsupp_select[i, j], 2)
       } else {
         text_label <- "ns"
       }
       grid.text(text_label, x, y, gp = gpar(fontsize = 10, col = "black"))
     }
 )
-V_heatmap_unsupp = Vital_corr_nutrients_unsupp[unlist(nutrient_heatmap_key[select_feats]),] %>%
+
+Vital_corr_nutrients_unsupp_select = Vital_corr_nutrients_unsupp[unlist(nutrient_heatmap_key[select_feats]),]
+Vital_corr_nutr_unsupp_pval_select = Vital_corr_nutr_unsupp_pval[unlist(nutrient_heatmap_key[select_feats]),]
+
+V_heatmap_unsupp = Vital_corr_nutrients_unsupp_select[unlist(nutrient_heatmap_key[select_feats]),] %>%
   Heatmap(
     cluster_rows = FALSE, cluster_columns = FALSE,  
     col = colorRamp2(seq(-0.5, 0.5, length.out = 101), colorRampPalette(c("purple", "white", "forestgreen"))(101)),
@@ -151,9 +150,9 @@ V_heatmap_unsupp = Vital_corr_nutrients_unsupp[unlist(nutrient_heatmap_key[selec
     column_title = "Mumta-LW", column_names_rot = 0, column_names_centered = TRUE,
     show_column_names = TRUE, show_row_names = TRUE, 
     cell_fun = function(j, i, x, y, width, height, fill) {
-      pval = Vital_corr_nutr_unsupp_pval[i, j] 
+      pval = Vital_corr_nutr_unsupp_pval_select[i, j] 
       if (pval < 0.05) {
-        text_label <- round(Vital_corr_nutrients_unsupp[i, j], 2)
+        text_label <- round(Vital_corr_nutrients_unsupp_select[i, j], 2)
       } else {
         text_label <- "ns"
       }
@@ -162,9 +161,9 @@ V_heatmap_unsupp = Vital_corr_nutrients_unsupp[unlist(nutrient_heatmap_key[selec
 )
 
 
-Figure3C = ggarrange(as.ggplot(M_heatmap_unsupp), as.ggplot(V_heatmap_unsupp), nrow = 1, widths = c(1,1.2))
-Figure3C
-ggexport(filename = paste0(fig_path, "/Figure3C.pdf"),
-         plot = Figure3C,
+Figure4C = ggarrange(as.ggplot(M_heatmap_unsupp), as.ggplot(V_heatmap_unsupp), nrow = 1, widths = c(1,1.2))
+Figure4C
+ggexport(filename = paste0(fig_path, "/Figure4C.pdf"),
+         plot = Figure4C,
         width = 5.3, height = 4)
 
