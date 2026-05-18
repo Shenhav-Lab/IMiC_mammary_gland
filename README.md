@@ -2,20 +2,20 @@
 
 ## Prerequisites
 ### R packages:
-- tidyverse - For dataframe manipulation
-- ggplot2 - For plotting
-- ggpubr - For publication-ready plotting
-- readxl - for reading excel documents
-- Hmisc - for calculating spearman R matricies with p values
-- ComplexHeatmap - for building heatmaps with complex text labels
-- circlize - dependency for ComplexHeatmap
-- ggplotify - for saving heatmaps as ggplot objects for ggarrange
-- epitools - For risk ratio analysis
-- zscorer - for hcaz calculations
-- purrr - for complex iteration
-- fgsea - for ranked enrichment analysis
-- GO.db - For extracting data from GO database 
-- gbmt - For group-based trajectory modeling
+- tidyverse (v.2.0.0) - For dataframe manipulation
+- ggplot2 (v.4.0.0) - For plotting
+- ggpubr (v.0.6.1) - For publication-ready plotting
+- readxl (v.1.4.3) - for reading excel documents
+- Hmisc (v.5.2.0) - for calculating spearman R matricies with p values
+- ComplexHeatmap (v.2.18.0) - for building heatmaps with complex text labels
+- circlize (v.0.4.17) - dependency for ComplexHeatmap
+- ggplotify (v.0.1.3) - for saving heatmaps as ggplot objects for ggarrange
+- epitools (v.0.5.10.1) - For risk ratio analysis
+- zscorer (v.0.3.1) - for hcaz calculations
+- purrr (v.1.0.2) - for complex iteration
+- fgsea (v.1.28.0) - for ranked enrichment analysis
+- GO.db (v.3.18.0) - For extracting data from GO database 
+- gbmt (v.0.1.4) - For group-based trajectory modeling
 
 ### Python enviroments:
 - joint_rpca.yml
