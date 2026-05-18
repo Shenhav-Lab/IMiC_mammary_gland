@@ -88,96 +88,81 @@ FigureS8B = ggarrange(
     Misame_everything %>% filter(Timepoint==1) %>% mutate(Label="14-21D") %>%
       ggplot(aes(x=BEPyn, y=Na, fill=Postnatal_BEP))  + ylab("Sodium (uM)") + geom_boxplot(show.legend = FALSE) + facet_grid(.~Label) + 
       stat_compare_means(comparisons = list(c("Y", "N")), 
-                         method = "wilcox", label = "p.signif",
-                         label.y = 2.5) + ylim(0,3) +
+                         method = "wilcox", label = "p.signif") + 
       ggtitle("MISAME") + xlab("Postnatal BEP") + theme_minimal(),
     Misame_everything %>% filter(Timepoint==2) %>%  mutate(Label="1-2M") %>%
       ggplot(aes(x=BEPyn, y=Na, fill=Postnatal_BEP)) + ylab(NULL) + geom_boxplot(show.legend = FALSE) + facet_grid(.~Label) + 
       stat_compare_means(comparisons = list(c("Y", "N")), 
-                         method = "wilcox", label = "p.signif",
-                         label.y = 2.5) + ylim(0,3) +
+                         method = "wilcox", label = "p.signif") + 
       ggtitle("") + xlab("Postnatal BEP") + theme_minimal(),
     Misame_everything %>% filter(Timepoint==3) %>% mutate(Label="3-4M") %>%
       ggplot(aes(x=BEPyn, y=Na, fill=Postnatal_BEP)) + ylab(NULL) + geom_boxplot(show.legend = FALSE) + facet_grid(.~Label) + 
       stat_compare_means(comparisons = list(c("Y", "N")), 
-                         method = "wilcox", label = "p.signif",
-                         label.y = 2.5) + ylim(0,3) +
+                         method = "wilcox", label = "p.signif") + 
       ggtitle("") + xlab("Postnatal BEP") + theme_minimal(),
     Vital_everything %>% filter(Timepoint==1) %>% mutate(Label="42D") %>%
       ggplot(aes(x=BEPyn, y=Na, fill=Postnatal_BEP)) + ylab(NULL) + geom_boxplot(show.legend = FALSE) + facet_grid(.~Label) + 
       stat_compare_means(comparisons = list(c("Y", "N")), 
-                         method = "wilcox", label = "p.signif",
-                         label.y = 2.5) + ylim(0,3) +
+                         method = "wilcox", label = "p.signif") +
       ggtitle("VITAL") + xlab("Postnatal BEP") + theme_minimal(),
     Vital_everything %>% filter(Timepoint==2) %>% mutate(Label="56D") %>%
       ggplot(aes(x=BEPyn, y=Na, fill=Postnatal_BEP)) + ylab(NULL) + geom_boxplot(show.legend = FALSE) + facet_grid(.~Label) + 
       stat_compare_means(comparisons = list(c("Y", "N")), 
-                         method = "wilcox", label = "p.signif",
-                         label.y = 2.5) + ylim(0,3) +
+                         method = "wilcox", label = "p.signif") + 
       ggtitle("") + xlab("Postnatal BEP") + theme_minimal(),
     nrow=1),
   ggarrange(
     Misame_everything %>% filter(Timepoint==1) %>% mutate(Label="14-21D") %>%
       ggplot(aes(x=BEPyn, y=Na_K_Ratio, fill=Postnatal_BEP)) + ylab("Na:K Ratio") + geom_boxplot(show.legend = FALSE) + facet_grid(.~Label) + 
       stat_compare_means(comparisons = list(c("Y", "N")), 
-                         method = "wilcox", label = "p.signif",
-                         label.y = 3.5) + ylim(0,4) +
+                         method = "wilcox", label = "p.signif") +
       ggtitle("MISAME") + xlab("Postnatal BEP") + theme_minimal(),
     Misame_everything %>% filter(Timepoint==2) %>%  mutate(Label="1-2M") %>%
       ggplot(aes(x=BEPyn, y=Na_K_Ratio, fill=Postnatal_BEP)) + ylab(NULL) + geom_boxplot(show.legend = FALSE) + facet_grid(.~Label) + 
       stat_compare_means(comparisons = list(c("Y", "N")), 
-                         method = "wilcox", label = "p.signif",
-                         label.y = 3.5) + ylim(0,4) +
+                         method = "wilcox", label = "p.signif") +
       ggtitle("") + xlab("Postnatal BEP") + theme_minimal(),
     Misame_everything %>% filter(Timepoint==3) %>% mutate(Label="3-4M") %>%
       ggplot(aes(x=BEPyn, y=Na_K_Ratio, fill=Postnatal_BEP)) + ylab(NULL) + geom_boxplot(show.legend = FALSE) + facet_grid(.~Label) + 
       stat_compare_means(comparisons = list(c("Y", "N")), 
-                         method = "wilcox", label = "p.signif",
-                         label.y = 3.5) + ylim(0,4) +
+                         method = "wilcox", label = "p.signif") + 
       ggtitle("") + xlab("Postnatal BEP") + theme_minimal(),
     Vital_everything %>% filter(Timepoint==1) %>% mutate(Label="42D") %>%
       ggplot(aes(x=BEPyn, y=Na_K_Ratio, fill=Postnatal_BEP)) + ylab(NULL) + geom_boxplot(show.legend = FALSE) + facet_grid(.~Label) + 
       stat_compare_means(comparisons = list(c("Y", "N")), 
-                         method = "wilcox", label = "p.signif",
-                         label.y = 3.5) + ylim(0,4) +
+                         method = "wilcox", label = "p.signif") + 
       ggtitle("VITAL") + xlab("Postnatal BEP") + theme_minimal(),
     Vital_everything %>% filter(Timepoint==2) %>% mutate(Label="56D") %>%
       ggplot(aes(x=BEPyn, y=Na_K_Ratio, fill=Postnatal_BEP)) + ylab(NULL) + geom_boxplot(show.legend = FALSE) + facet_grid(.~Label) + 
       stat_compare_means(comparisons = list(c("Y", "N")), 
-                         method = "wilcox", label = "p.signif",
-                         label.y = 3.5) + ylim(0,4) +
+                         method = "wilcox", label = "p.signif") +
       ggtitle("") + xlab("Postnatal BEP") + theme_minimal(),
     nrow=1),
   ggarrange(
     Misame_everything %>% filter(Timepoint==1) %>% mutate(Label="14-21D") %>%
       ggplot(aes(x=BEPyn, y=K, fill=Postnatal_BEP)) + ylab("Potassium (uM)") + geom_boxplot(show.legend = FALSE) + facet_grid(.~Label) + 
       stat_compare_means(comparisons = list(c("Y", "N")), 
-                         method = "wilcox", label = "p.signif",
-                         label.y = 3.5) + ylim(0,4) +
+                         method = "wilcox", label = "p.signif") + 
       ggtitle("MISAME") + xlab("Postnatal BEP") + theme_minimal(),
     Misame_everything %>% filter(Timepoint==2) %>%  mutate(Label="1-2M") %>%
       ggplot(aes(x=BEPyn, y=K, fill=Postnatal_BEP)) + ylab(NULL) + geom_boxplot(show.legend = FALSE) + facet_grid(.~Label) + 
       stat_compare_means(comparisons = list(c("Y", "N")), 
-                         method = "wilcox", label = "p.signif",
-                         label.y = 1.25) + ylim(0,1.5) +
+                         method = "wilcox", label = "p.signif") + 
       ggtitle("") + xlab("Postnatal BEP") + theme_minimal(),
     Misame_everything %>% filter(Timepoint==3) %>% mutate(Label="3-4M") %>%
       ggplot(aes(x=BEPyn, y=K, fill=Postnatal_BEP)) + ylab(NULL) + geom_boxplot(show.legend = FALSE) + facet_grid(.~Label) + 
       stat_compare_means(comparisons = list(c("Y", "N")), 
-                         method = "wilcox", label = "p.signif",
-                         label.y =1.25) + ylim(0,1.5) +
+                         method = "wilcox", label = "p.signif") +
       ggtitle("") + xlab("Postnatal BEP") + theme_minimal(),
     Vital_everything %>% filter(Timepoint==1) %>% mutate(Label="42D") %>%
       ggplot(aes(x=BEPyn, y=K, fill=Postnatal_BEP)) + ylab(NULL) + geom_boxplot(show.legend = FALSE) + facet_grid(.~Label) + 
       stat_compare_means(comparisons = list(c("Y", "N")), 
-                         method = "wilcox", label = "p.signif",
-                         label.y = 0.8) + ylim(0,1.2) +
+                         method = "wilcox", label = "p.signif") + 
       ggtitle("VITAL") + xlab("Postnatal BEP") + theme_minimal(),
     Vital_everything %>% filter(Timepoint==2) %>% mutate(Label="56D") %>%
       ggplot(aes(x=BEPyn, y=K, fill=Postnatal_BEP)) + ylab(NULL) + geom_boxplot(show.legend = FALSE) + facet_grid(.~Label) + 
       stat_compare_means(comparisons = list(c("Y", "N")), 
-                         method = "wilcox", label = "p.signif",
-                         label.y = 0.8) + ylim(0,1) +
+                         method = "wilcox", label = "p.signif") + 
       ggtitle("") + xlab("Postnatal BEP") + theme_minimal(),
     nrow=1), ncol = 1)
 FigureS8B
